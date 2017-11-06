@@ -9,6 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import pojo.User;
+import service.UserService;
+
 //²Î¿¼ÍøÖ·£ºhttp://www.cnblogs.com/Sunnor/p/6130380.html
 //http://localhost:8080/com.songlou.web/hello/index
 //http://localhost:8080/com.songlou.web/css/hello.css
@@ -38,6 +41,16 @@ public class HelloController {
 		map.put("wangwu", "ÉîÛÚ");
 		mv.addObject("map", map);
 		
+		return mv;
+	}
+
+	private UserService userService = new UserService();
+	@RequestMapping("/main")
+	public ModelAndView main() {
+		// TODO Auto-generated method stub
+		User user = userService.findByUserId(1);
+		ModelAndView mv = new ModelAndView("hello");
+		mv.addObject("user", user);
 		return mv;
 	}
 }
